@@ -50,11 +50,11 @@ Ubuhle applies computer vision and machine learning to:
 <h2><b> Tech Stack </b></h2>
 AI/ML: Computer vision for authenticity detection.
 <br>
-Anthropic API (free option): Used for AI inference and analysis.
+-Anthropic API (free option): Used for AI inference and analysis.
 <br>
-Blockchain/Digital Identity: Secure certificates and vendor licensing.
+-Blockchain/Digital Identity: Secure certificates and vendor licensing.
 <br>
-Mobile-first platform: Accessible to traders in informal markets.
+-Mobile-first platform: Accessible to traders in informal markets.
 <br>
 <br>
 <h2><b> Impact </b></h2>
