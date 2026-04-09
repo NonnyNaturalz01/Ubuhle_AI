@@ -58,8 +58,8 @@ Ubuhle applies computer vision and machine learning to:
 <br>
 <br>
 <h2><b> Impact </b></h2>
-Economic empowerment: Women vendors gain credibility and higher earnings.
+-Economic empowerment: Women vendors gain credibility and higher earnings.
 <br>
-Cultural preservation: Protects traditional crafts from counterfeiting.
+-Cultural preservation: Protects traditional crafts from counterfeiting.
 <br>
-Scalable trust generates a digital ecosystem for informal markets.
+-Scalable trust generates a digital ecosystem for informal markets.
