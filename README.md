@@ -33,13 +33,13 @@ Ubuhle applies computer vision and machine learning to:
 -Vendors provide a product photo.
 <br>
 -AI evaluates authenticity (e.g., is this mqhele made of genuine cowhide or leather).
-<br>
+<br><br>
 2) Vendor licensing
 <br>
 -Verified sellers are issued a digital license.
 <br>
 -Offers trust and assurance of quality.
-<br>
+<br><br>
 3) Digital  License
 <br>
 -Buyers obtain certificates of authenticity.
