@@ -16,8 +16,8 @@ Our system scans products, confirms authenticity, and creates digital certificat
 <br>
 3) Lack of verification prevents traders from scaling their businesses.
 <br>
+
 <h3><b> Solution </b></h3>
-<br>
 Ubuhle applies computer vision and machine learning to:
 <br>
 -Scan product images for authenticity.
