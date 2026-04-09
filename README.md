@@ -4,7 +4,7 @@
 Ubuhle is an AI-app that aims to protect women traders in South Africa's informal markets from counterfeit goods. These women sell cultural goods such as beading, cowhide, and traditional clothing. Counterfeit goods undermine trust, lower revenue, and perpetuate cycles of poverty.
 <br>
 Our system scans products, confirms authenticity, and creates digital certificates of legitimacy. This not only protects purchasers, but also gives women merchants a trustworthy digital identification, transforming informal work into legitimate, scalable enterprises.
-<br>
+<br><br>
 🏆 This project won 3rd place at an AI Hackathon.
 <br>
 <br>
