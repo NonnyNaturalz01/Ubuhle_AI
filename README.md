@@ -48,7 +48,7 @@ Ubuhle applies computer vision and machine learning to:
 <br>
 <br>
 <h2><b> Tech Stack </b></h2>
-AI/ML: Computer vision for authenticity detection.
+-AI/ML: Computer vision for authenticity detection.
 <br>
 -Anthropic API (free option): Used for AI inference and analysis.
 <br>
