@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ubuhle — From her hands to your heart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!----------------------------------------------------------
+     First screen (login name , surname, email and password)
+     -------------------------------------------------------->
+<div id="loginScreen" class="screen active">
+  <div class="login-card">
+    <div class="login-logo">
+      <h1>Ubuhle</h1>
+      <div class="logo-divider"><div class="logo-diamond"></div></div>
+      <p>From her hands to your heart</p>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="firstName" placeholder="e.g. Nomsa" />
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="lastName" placeholder="e.g. Dube" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="loginEmail" placeholder="you@example.com" />
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••" />
+    </div>
+    <button class="btn-primary" onclick="handleLogin()">✦ Enter Ubuhle</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════
+     APP SHELL
+══════════════════════════════ -->
+<div id="appShell" class="screen">
+
+  <!-- Header -->
+  <div class="app-header">
+    <div class="header-logo">
+      Ubuhle
+      <span>from her hands to your heart</span>
+    </div>
+    <div class="header-user">
+      <div class="user-avatar" id="userAvatar">N</div>
+      <button class="logout-btn" onclick="handleLogout()" title="Logout">⇥</button>
+    </div>
+  </div>
+
+  <!-- API Key Banner -->
+  <div class="api-banner" onclick="openApiModal()" id="apiBanner">
+    <span>⚠️ Set your Anthropic API key to enable AI scanning</span>
+    <span>→</span>
+  </div>
+
+  <!-- Page Content -->
+  <div class="page-content">
+
+    <!-- ── HOME PAGE ── -->
+    <div id="homePage" class="inner-page active">
+      <div class="home-hero">
+        <div class="hero-greeting">Welcome back</div>
+        <div class="hero-name" id="heroName">Nomsa</div>
+        <div class="hero-tagline">Protecting authentic African craftsmanship</div>
+        <div class="hero-diamonds">
+          <div class="hero-diamond"></div>
+          <div class="hero-diamond"></div>
+          <div class="hero-diamond"></div>
+        </div>
+      </div>
+      <div class="zigzag-border"></div>
+      <div class="cards-grid" style="margin-top:20px;">
+        <div class="feature-card" onclick="showPage('scanPage'); setNav('scan')">
+          <div class="card-icon scan">🔍</div>
+          <div class="card-text">
+            <h3>Scan & Verify</h3>
+            <p>Upload a product photo for AI authenticity analysis</p>
+          </div>
+          <div class="card-arrow">›</div>
+        </div>
+        <div class="feature-card" onclick="showPage('licensesPage'); setNav('licenses')">
+          <div class="card-icon license">📜</div>
+          <div class="card-text">
+            <h3>My Licenses</h3>
+            <p>View and manage your verified certificates</p>
+          </div>
+          <div class="card-arrow">›</div>
+        </div>
+        <div class="feature-card" onclick="showPage('statsPage'); setNav('stats'); renderStats()">
+          <div class="card-icon stats">📊</div>
+          <div class="card-text">
+            <h3>Stats</h3>
+            <p>Track your verification history and metrics</p>
+          </div>
+          <div class="card-arrow">›</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SCAN PAGE ── -->
+    <div id="scanPage" class="inner-page">
+      <div class="page-header">
+        <h2>Product Authenticity Scanner</h2>
+        <p>Upload a photo and describe your product for AI analysis</p>
+      </div>
+
+      <div class="scan-area" id="scanArea">
+        <input type="file" id="imageInput" accept="image/*" onchange="previewImage(event)" />
+        <div class="scan-icon">📷</div>
+        <h3>Upload Product Photo</h3>
+        <p>Tap to choose or drag &amp; drop</p>
+        <img id="imagePreview" src="" alt="Preview" />
+      </div>
+
+      <div class="scan-form">
+        <textarea id="productDesc" placeholder="Describe your product... e.g. 'Mqhele hat made from cowhide', 'Zulu beadwork necklace', 'Cowhide rug from Lesotho'"></textarea>
+        <button class="btn-scan" id="analyseBtn" onclick="analyseProduct()">✦ Analyse Product</button>
+      </div>
+
+      <div class="loading-card" id="loadingCard">
+        <div class="spinner"></div>
+        <p>Analysing your product...</p>
+      </div>
+
+      <div class="result-card" id="resultCard">
+        <div class="result-header" id="resultHeader">
+          <span class="verdict-badge" id="verdictBadge">AUTHENTIC</span>
+          <span class="confidence-text" id="confidenceText">95% confidence</span>
+        </div>
+        <div class="result-body">
+          <div class="result-section">
+            <h4>Analysis</h4>
+            <p id="resultExplanation"></p>
+          </div>
+          <div class="result-section">
+            <h4>Key Indicators</h4>
+            <div class="indicators-list" id="indicatorsList"></div>
+          </div>
+          <div class="result-section">
+            <h4>Recommendation</h4>
+            <p id="resultRecommendation"></p>
+          </div>
+          <button class="btn-license" id="generateLicenseBtn" onclick="generateLicense()" style="display:none;">
+            📜 Generate Authenticity License
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LICENSES PAGE ── -->
+    <div id="licensesPage" class="inner-page">
+      <div class="page-header">
+        <h2>My Verified Licenses</h2>
+        <p>Certificates of authenticity for your products</p>
+      </div>
+      <div class="licenses-list" id="licensesList"></div>
+    </div>
+
+    <!-- ── STATS PAGE ── -->
+    <div id="statsPage" class="inner-page">
+      <div class="page-header">
+        <h2>Verification Stats</h2>
+        <p>Your product verification history at a glance</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="statTotal">0</div>
+          <div class="stat-label">Total Scanned</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statRate" style="color:var(--green)">0%</div>
+          <div class="stat-label">Authentic Rate</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statAuth" style="color:var(--green)">0</div>
+          <div class="stat-label">Authentic</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statFake">0</div>
+          <div class="stat-label">Not Authentic</div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <h3>Authenticity Overview</h3>
+        <canvas id="statsChart" height="160"></canvas>
+      </div>
+      <div class="history-section">
+        <div class="history-header">
+          <h3>Scan History</h3>
+          <button class="btn-clear" onclick="clearHistory()">Clear All</button>
+        </div>
+        <div id="historyList"></div>
+      </div>
+    </div>
+
+  </div><!-- end .page-content -->
+
+  <!-- Bottom Nav -->
+  <div class="bottom-nav">
+    <button class="nav-btn active" id="nav-home" onclick="showPage('homePage'); setNav('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>Home</span>
+      <div class="nav-indicator"></div>
+    </button>
+    <button class="nav-btn" id="nav-scan" onclick="showPage('scanPage'); setNav('scan')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <span>Scan</span>
+      <div class="nav-indicator"></div>
+    </button>
+    <button class="nav-btn" id="nav-licenses" onclick="showPage('licensesPage'); setNav('licenses'); renderLicenses()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+      <span>Licenses</span>
+      <div class="nav-indicator"></div>
+    </button>
+    <button class="nav-btn" id="nav-stats" onclick="showPage('statsPage'); setNav('stats'); renderStats()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10"/>
+        <line x1="12" y1="20" x2="12" y2="4"/>
+        <line x1="6"  y1="20" x2="6"  y2="14"/>
+      </svg>
+      <span>Stats</span>
+      <div class="nav-indicator"></div>
+    </button>
+  </div>
+
+</div><!-- end #appShell -->
+
+<!-- ══════════════════════════════
+     API KEY MODAL
+══════════════════════════════ -->
+<div class="api-modal" id="apiModal">
+  <div class="api-modal-card">
+    <h3>🔑 Anthropic API Key</h3>
+    <p>Get a free key at <strong>console.anthropic.com</strong></p>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-..." />
+    <div class="api-modal-buttons">
+      <button class="btn-secondary" onclick="closeApiModal()">Cancel</button>
+      <button class="btn-primary" style="flex:1;padding:12px;" onclick="saveApiKey()">Save Key</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
